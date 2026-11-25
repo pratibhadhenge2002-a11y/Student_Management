@@ -1,0 +1,54 @@
+<app-add-student
+  [studentToEdit]="editingStudent"
+  (studentAdded)="addStudent($event)"
+  (studentUpdated)="updateStudent($event)"></app-add-student>
+
+<div class="container">
+    <h2>Student List</h2>
+    <div class="search-container">
+        <input
+            type="text"
+            placeholder="Search Student by name..."
+            [(ngModel)]="searchText"
+        />
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Course</th>
+                <th>Age</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+    
+
+       <tbody>
+           <tr *ngFor="let student of filteredStudents">
+               <td>{{ student.id}}</td>
+               <td>{{ student.name}}</td>
+               <td>{{ student.email}}</td>
+               <td>{{ student.course}}</td>
+               <td>{{ student.age}}</td>
+               <td class="action-buttons">
+                   <button
+                        type="button"
+                        class="edit-btn"
+                        (click)="editStudent(student)">
+                        Edit
+                   </button>
+
+                   <button
+                        type="button"
+                        class="delete-btn"
+                        (click)="deleteStudent(student.id)">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>    
+</div>

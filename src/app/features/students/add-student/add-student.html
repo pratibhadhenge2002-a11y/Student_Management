@@ -1,0 +1,45 @@
+<div class="form-container">
+
+    <h2>{{ studentToEdit ? 'EDIT STUDENT' : 'ADD NEW STUDENT' }}
+
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label>Student Name</label>
+            <input 
+              type="text"
+              formControlName="name"
+              placeholder="Enter student name">
+
+            <small *ngIf="studentForm.get('name')?.touched && studentForm.get('name')?.hasError('required')">Name is required</small>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input
+                type="text",
+                formControlName="email",
+                placeholder="Enter Name">
+            
+            <small *ngIf="studentForm.get('email')?.touched && studentForm.get('email')?.hasError('required')">Email is required</small>
+            <small *ngIf="studentForm.get('email')?.touched && studentForm.get('email')?.hasError('email')">Enter a valid email</small>
+        </div>
+
+        <div class="form-group">
+            <label>Course</label>
+            <input
+               type="text",
+               formControlName="course",
+               placeholder="Enter Course">
+        </div>
+
+        <div class="form-group">
+            <label>Age</label>
+            <input
+                type="number",
+                formControlName="age",
+                placeholder="Enter age">
+        </div>
+
+        <button type="submit">{{ studentToEdit ? 'Update Student' : 'Add Student' }}</button>
+    </form>
